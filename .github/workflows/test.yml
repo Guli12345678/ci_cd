@@ -2,7 +2,7 @@ name: Check
 on: push
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: CheckOut
         uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         version: [20, 18, 22]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: CheckOut
         uses: actions/checkout@v4
