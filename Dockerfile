@@ -1,13 +1,13 @@
 FROM node:alpine AS builder
 WORKDIR /app
-ADD package*.json ./
+COPY package.json package-lock.json ./
 RUN npm ci
-ADD . .
-RUN npm run build --prod
+COPY . .
+RUN npm run build
 
 FROM node:alpine
 WORKDIR /app
-COPY --from=builder /app/dist  ./dist
-ADD package*.json ./
+COPY --from=builder /app/dist ./dist
+COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
-CMD ["node", "./dist/main.js"]# test change
+CMD ["node", "dist/main.js"]
