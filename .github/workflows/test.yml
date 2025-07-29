@@ -6,7 +6,18 @@ jobs:
     steps:
       - name: CheckOut
         uses: actions/checkout@v4
-      - name: Install 
+      - name: Install
         run: npm ci
       - name: Lint Check
         run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CheckOut
+        uses: actions/checkout@v4
+      - name: Install
+        run: npm ci
+      - name: Test Check
+        env:
+          PORT: ${{secrets.PORT}}
+        run: npm run test
